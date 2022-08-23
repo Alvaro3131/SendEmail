@@ -1,0 +1,11 @@
+import { Router } from "express";
+import * as usuario from "../controllers/usuario.controller";
+const router = Router();
+const {checkToken} = require('../auth/token_validation');
+router.get("/",checkToken, usuario.getUsuario);
+router.post("/validar", usuario.validarUsuario);
+router.get("/:id",checkToken, usuario.getUsuarioId);
+router.post("/",checkToken, usuario.crearUsuario);
+router.post("/registro", usuario.registrarUsuario);
+router.delete("/:id",checkToken, usuario.deleteUsuario);
+export default router;
